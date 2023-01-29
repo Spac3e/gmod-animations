@@ -1,7 +1,7 @@
 ![image](https://user-images.githubusercontent.com/100233737/215331780-522c8662-3be2-4aaa-b34f-169a88ba5403.png)
 
 # Gmod animations
-This is animations base what allow you to set models anim type and use model, not playermodel instead or playermodel with anim of model
+This is animations base what allow you to set models anim type and use model, playermodel with set anim class, model with set anim class = playermodel with npc anims!
 Animations base ported from  [Helix](https://github.com/nebulouscloud/helix)
 
 How to use:

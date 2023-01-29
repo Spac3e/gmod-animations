@@ -8,3 +8,5 @@ ix.anim.SetModelClass("models/vortigaunt.mdl", "vortigaunt")
 ix.anim.SetModelClass("models/vortigaunt_blue.mdl", "vortigaunt")
 ix.anim.SetModelClass("models/vortigaunt_doctor.mdl", "vortigaunt")
 ix.anim.SetModelClass("models/vortigaunt_slave.mdl", "vortigaunt")
+
+--[[ Anim types: overwatch metrocop citizen_male citizen_female zombie fastZombie player (Default) vortigaunt ]]--

@@ -714,11 +714,6 @@ ix.anim.fastZombie = {
 
 local translations = {}
 
---- Sets a model's animation class.
--- @realm shared
--- @string model Model name to set the animation class for
--- @string class Animation class to assign to the model
--- @usage ix.anim.SetModelClass("models/police.mdl", "metrocop")
 function ix.anim.SetModelClass(model, class)
 	if (!ix.anim[class]) then
 		error("'" .. tostring(class) .. "' is not a valid animation class!")
@@ -796,9 +791,6 @@ if (SERVER) then
 
 		return false
 	end
-
-	--- Forcefully stops this player's model from playing an animation that was started by `ForceSequence`.
-	-- @realm server
 	function playerMeta:LeaveSequence()
 		hook.Run("PlayerLeaveSequence", self)
 

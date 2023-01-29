@@ -4,6 +4,8 @@
 This is animations base what allow you to set models anim type and use model, playermodel with set anim class, model with set anim class = playermodel with npc anims!
 Animations base ported from  [Helix](https://github.com/nebulouscloud/helix)
 
+You can use other addons for fix overwatch and metrocop's pistol/ar2 animations
+
 How to use:
 
 1. Don't be stupid

@@ -1,5 +1,4 @@
 if CLIENT then
-	--local GAMEMODE = GAMEMODE or GAMEMODE
 	hook.Add( "NetworkEntityCreated", "NetworkEntityCreated_ix", function(entity)
 
 		if (entity:IsPlayer()) then

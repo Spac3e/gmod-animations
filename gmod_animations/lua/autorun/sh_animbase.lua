@@ -1,13 +1,5 @@
 ix = ix or {}
 ix.anim = ix.anim or {}
-ix.anim.SetModelClass("models/police.mdl", "metrocop")
-ix.anim.SetModelClass("models/combine_super_soldier.mdl", "overwatch")
-ix.anim.SetModelClass("models/combine_soldier_prisonGuard.mdl", "overwatch")
-ix.anim.SetModelClass("models/combine_soldier.mdl", "overwatch")
-ix.anim.SetModelClass("models/vortigaunt.mdl", "vortigaunt")
-ix.anim.SetModelClass("models/vortigaunt_blue.mdl", "vortigaunt")
-ix.anim.SetModelClass("models/vortigaunt_doctor.mdl", "vortigaunt")
-ix.anim.SetModelClass("models/vortigaunt_slave.mdl", "vortigaunt")
 
 --[[ Anim types: overwatch metrocop citizen_male citizen_female zombie fastZombie player (Default) vortigaunt ]]--
 do
@@ -731,6 +723,14 @@ function ix.anim.SetModelClass(model, class)
 
 	translations[model:lower()] = class
 end
+ix.anim.SetModelClass("models/police.mdl", "metrocop")
+ix.anim.SetModelClass("models/combine_super_soldier.mdl", "overwatch")
+ix.anim.SetModelClass("models/combine_soldier_prisonGuard.mdl", "overwatch")
+ix.anim.SetModelClass("models/combine_soldier.mdl", "overwatch")
+ix.anim.SetModelClass("models/vortigaunt.mdl", "vortigaunt")
+ix.anim.SetModelClass("models/vortigaunt_blue.mdl", "vortigaunt")
+ix.anim.SetModelClass("models/vortigaunt_doctor.mdl", "vortigaunt")
+ix.anim.SetModelClass("models/vortigaunt_slave.mdl", "vortigaunt")
 function ix.anim.GetModelClass(model)
 	model = string.lower(model)
 	local class = translations[model]

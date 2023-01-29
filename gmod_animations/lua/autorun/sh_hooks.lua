@@ -1,4 +1,3 @@
--- luacheck: globals HOLDTYPE_TRANSLATOR
 HOLDTYPE_TRANSLATOR = {}
 HOLDTYPE_TRANSLATOR[""] = "normal"
 HOLDTYPE_TRANSLATOR["physgun"] = "smg"
@@ -22,7 +21,6 @@ HOLDTYPE_TRANSLATOR["magic"] = "normal"
 HOLDTYPE_TRANSLATOR["revolver"] = "pistol"
 HOLDTYPE_TRANSLATOR["deagle"] = "pistol"
 
--- luacheck: globals  PLAYER_HOLDTYPE_TRANSLATOR
 PLAYER_HOLDTYPE_TRANSLATOR = {}
 PLAYER_HOLDTYPE_TRANSLATOR[""] = "normal"
 PLAYER_HOLDTYPE_TRANSLATOR["fist"] = "normal"
@@ -45,16 +43,13 @@ local PLAYER_HOLDTYPE_TRANSLATOR = PLAYER_HOLDTYPE_TRANSLATOR
 local HOLDTYPE_TRANSLATOR = HOLDTYPE_TRANSLATOR
 local animationFixOffset = Vector(16.5438, -0.1642, -20.5493)
 
---local GAMEMODE = GAMEMODE or GAMEMODE
-
 hook.Add("TranslateActivity","TranslateActivity_ix",function(client, act)
 	local clientInfo = client:GetTable()
 	local modelClass = clientInfo.ixAnimModelClass or "player"
-	local bRaised = true--client:IsWepRaised()
-
+	local bRaised = true
 	if (modelClass == "player") then
 		local weapon = client:GetActiveWeapon()
-		local bAlwaysRaised = true--ix.config.Get("weaponAlwaysRaised")
+		local bAlwaysRaised = true
 		weapon = IsValid(weapon) and weapon or nil
 
 		if (!bAlwaysRaised and weapon and !bRaised and client:OnGround()) then
@@ -93,13 +88,11 @@ hook.Add("TranslateActivity","TranslateActivity_ix",function(client, act)
 		if !GAMEMODE then return end
 		return GAMEMODE.BaseClass:TranslateActivity(client, act)
 	end
-	--PrintTable(clientInfo)
-	
+
 	local weapon = client:GetActiveWeapon()
 	local weapon = IsValid(weapon) and weapon or nil
 	local holdType = weapon and (weapon.HoldType or weapon:GetHoldType()) or "normal"
 	clientInfo.ixAnimTable = ix.anim[modelClass][client.ixAnimHoldType]
-	--PrintTable(clientInfo.ixAnimTable)
 	if (clientInfo.ixAnimTable) then
 		local glide = clientInfo.ixAnimGlide
 
@@ -179,12 +172,8 @@ end)
 
 hook.Add("EntityRemoved","EntityRemoved_ix",function(entity)
 	if (SERVER) then
-		--entity:ClearNW2Vars()
 	elseif (entity:IsWeapon()) then
 		local owner = entity:GetOwner()
-
-		-- GetActiveWeapon is the player's new weapon at this point so we'll assume
-		-- that the player switched away from this weapon
 		if (IsValid(owner) and owner:IsPlayer()) then
 			hook.Run("PlayerWeaponChanged", owner, owner:GetActiveWeapon())
 		end
@@ -230,8 +219,6 @@ hook.Add("PlayerSwitchWeapon","PlayerSwitchWeapon_ix",function(client, oldWeapon
 	if (!IsFirstTimePredicted()) then
 		return
 	end
-
-	-- the player switched weapon themself (i.e not through SelectWeapon), so we have to network it here
 	if (SERVER) then
 		net.Start("PlayerSelectWeapon")
 			net.WriteEntity(client)
@@ -247,7 +234,6 @@ hook.Add("PlayerModelChanged","PlayerModelChanged_ix",function(client, model)
 
 	UpdateAnimationTable(client)
 end)
-
 do
 	local vectorAngle = FindMetaTable("Vector").Angle
 	local normalizeAngle = math.NormalizeAngle
@@ -270,7 +256,6 @@ do
 		clientInfo.CalcSeqOverride = -1
 		clientInfo.CalcIdeal = ACT_MP_STAND_IDLE
 
-		-- we could call the baseclass function, but it's faster to do it this way
 		if !GAMEMODE then return end
 		local BaseClass = GAMEMODE.BaseClass
 
@@ -279,7 +264,7 @@ do
 			BaseClass:HandlePlayerVaulting(client, velocity) or
 			BaseClass:HandlePlayerJumping(client, velocity) or
 			BaseClass:HandlePlayerSwimming(client, velocity) or
-			BaseClass:HandlePlayerDucking(client, velocity)) then -- luacheck: ignore 542
+			BaseClass:HandlePlayerDucking(client, velocity)) then
 		else
 			local length = velocity:Length2DSqr()
 

@@ -1,25 +1,14 @@
-
---[[--
-Player model animation.
-
-Helix comes with support for using NPC animations/models as regular player models by manually translating animations. There are
-a few standard animation sets that are built-in that should cover most non-player models:
-	citizen_male
-	citizen_female
-	metrocop
-	overwatch
-	vortigaunt
-	player
-	zombie
-	fastZombie
-
-If you find that your models are T-posing when they work elsewhere, you'll probably need to set the model class for your
-model with `ix.anim.SetModelClass` in order for the correct animations to be used. If you'd like to add your own animation
-class, simply add to the `ix.anim` table with a model class name and the required animation translation table.
-]]
--- @module ix.anim
 ix = ix or {}
 ix.anim = ix.anim or {}
+ix.anim.SetModelClass("models/police.mdl", "metrocop")
+ix.anim.SetModelClass("models/combine_super_soldier.mdl", "overwatch")
+ix.anim.SetModelClass("models/combine_soldier_prisonGuard.mdl", "overwatch")
+ix.anim.SetModelClass("models/combine_soldier.mdl", "overwatch")
+ix.anim.SetModelClass("models/vortigaunt.mdl", "vortigaunt")
+ix.anim.SetModelClass("models/vortigaunt_blue.mdl", "vortigaunt")
+ix.anim.SetModelClass("models/vortigaunt_doctor.mdl", "vortigaunt")
+ix.anim.SetModelClass("models/vortigaunt_slave.mdl", "vortigaunt")
+
 ix.anim.citizen_male = {
 	normal = {
 		[ACT_MP_STAND_IDLE] = {ACT_IDLE, ACT_IDLE},
@@ -405,14 +394,6 @@ function ix.anim.SetModelClass(model, class)
 
 	translations[model:lower()] = class
 end
-
---- Gets a model's animation class.
--- @realm shared
--- @string model Model to get the animation class for
--- @treturn[1] string Animation class of the model
--- @treturn[2] nil If there was no animation associated with the given model
--- @usage ix.anim.GetModelClass("models/police.mdl")
--- > metrocop
 function ix.anim.GetModelClass(model)
 	model = string.lower(model)
 	local class = translations[model]
@@ -432,34 +413,11 @@ function ix.anim.GetModelClass(model)
 
 	return class
 end
-
-ix.anim.SetModelClass("models/police.mdl", "metrocop")
-ix.anim.SetModelClass("models/combine_super_soldier.mdl", "overwatch")
-ix.anim.SetModelClass("models/combine_soldier_prisonGuard.mdl", "overwatch")
-ix.anim.SetModelClass("models/combine_soldier.mdl", "overwatch")
-ix.anim.SetModelClass("models/vortigaunt.mdl", "vortigaunt")
-ix.anim.SetModelClass("models/vortigaunt_blue.mdl", "vortigaunt")
-ix.anim.SetModelClass("models/vortigaunt_doctor.mdl", "vortigaunt")
-ix.anim.SetModelClass("models/vortigaunt_slave.mdl", "vortigaunt")
-
 if (SERVER) then
 	util.AddNetworkString("ixSequenceSet")
 	util.AddNetworkString("ixSequenceReset")
 
 	local playerMeta = FindMetaTable("Player")
-
-	--- Player anim methods
-	-- @classmod Player
-
-	--- Forces this player's model to play an animation sequence. It also prevents the player from firing their weapon while the
-	-- animation is playing.
-	-- @realm server
-	-- @string sequence Name of the animation sequence to play
-	-- @func[opt=nil] callback Function to call when the animation finishes. This is also called immediately if the animation
-	-- fails to play
-	-- @number[opt=nil] time How long to play the animation for. This defaults to the duration of the animation
-	-- @bool[opt=false] bNoFreeze Whether or not to avoid freezing this player in place while the animation is playing
-	-- @see LeaveSequence
 	function playerMeta:ForceSequence(sequence, callback, time, bNoFreeze)
 		hook.Run("PlayerEnterSequence", self, sequence, callback, time, bNoFreeze)
 

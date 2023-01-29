@@ -832,4 +832,3 @@ else
 		end
 	end)
 end
-Footer

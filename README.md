@@ -6,7 +6,7 @@ Animations base ported from  [Helix](https://github.com/nebulouscloud/helix)
 How to use:
 
 1. Don't be stupid
-2. Open sh_anims
+2. Open sh_animbase
 3. ix.anim.SetModelClass("model", "anim_type")
 ## Authors
 

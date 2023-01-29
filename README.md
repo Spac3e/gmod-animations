@@ -11,8 +11,6 @@ How to use:
 ## Authors
 
 - [@-Spac3](https://github.com/Spac3e)
-- [@DarNull]
-
 
 ## Badges
 
